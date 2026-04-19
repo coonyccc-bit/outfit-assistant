@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#fff4d6" />
+  <title>可妮穿搭 · 春日全天版</title>
+  <style>
+    :root {
+      --cream: #fffbeb;
+      --butter: #fff4d6;
+      --yolk: #fde68a;
+      --petal: #fef9c3;
+      --leaf: #86efac;
+      --text: #3f3426;
+      --muted: #78716c;
+      --accent: #d97706;
+      --accent-soft: rgba(217, 119, 6, 0.18);
+      --card: rgba(255, 255, 255, 0.88);
+      --radius: 20px;
+      --shadow: 0 14px 44px rgba(120, 90, 40, 0.12);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+
+    body {
+      min-height: 100%;
+      color: var(--text);
+      background: linear-gradient(
+        168deg,
+        var(--cream) 0%,
+        var(--butter) 38%,
+        #fff7ed 70%,
+        var(--petal) 100%
+      );
+      padding: env(safe-area-inset-top) env(safe-area-inset-right)
+        env(safe-area-inset-bottom) env(safe-area-inset-left);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* 装饰：旋转花朵 */
+    .deco-flowers {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .flower {
+      position: absolute;
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      opacity: 0.55;
+      filter: drop-shadow(0 2px 4px rgba(180, 120, 40, 0.15));
+      animation: spin-flower 10s linear infinite;
+    }
+
+    .flower:nth-child(2) { animation-duration: 14s; animation-direction: reverse; }
+    .flower:nth-child(3) { animation-duration: 12s; }
+    .flower:nth-child(4) { animation-duration: 16s; animation-direction: reverse; }
+    .flower:nth-child(5) { animation-duration: 11s; }
+
+    @keyframes spin-flower {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .f1 { top: 8%; left: 4%; }
+    .f2 { top: 18%; right: 6%; font-size: clamp(1.4rem, 4vw, 2rem); }
+    .f3 { bottom: 22%; left: 8%; }
+    .f4 { bottom: 12%; right: 10%; font-size: clamp(1.5rem, 4.5vw, 2.2rem); }
+    .f5 { top: 42%; right: 3%; opacity: 0.35; font-size: 1.8rem; }
+
+    /* 小兔子跳跃 */
+    .bunny-wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bunny {
+      font-size: 2.35rem;
+      line-height: 1;
+      display: inline-block;
+      animation: bunny-hop 1.1s ease-in-out infinite;
+      filter: drop-shadow(0 4px 0 rgba(0, 0, 0, 0.06));
+    }
+
+    .bunny-shadow {
+      display: block;
+      width: 48px;
+      height: 8px;
+      margin-top: -2px;
+      background: radial-gradient(ellipse, rgba(0, 0, 0, 0.12), transparent 70%);
+      border-radius: 50%;
+      animation: shadow-pulse 1.1s ease-in-out infinite;
+    }
+
+    @keyframes bunny-hop {
+      0%, 100% { transform: translateY(0) scale(1, 1); }
+      15% { transform: translateY(-14px) scale(1.03, 0.97); }
+      30% { transform: translateY(0) scale(1, 1); }
+      45% { transform: translateY(-8px) scale(1.02, 0.98); }
+      60% { transform: translateY(0) scale(1, 1); }
+    }
+
+    @keyframes shadow-pulse {
+      0%, 100% { transform: scaleX(1); opacity: 0.9; }
+      15% { transform: scaleX(0.75); opacity: 0.55; }
+      30% { transform: scaleX(1); opacity: 0.9; }
+      45% { transform: scaleX(0.85); opacity: 0.65; }
+      60% { transform: scaleX(1); opacity: 0.9; }
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 430px;
+      margin: 0 auto;
+      padding: 16px 16px 32px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    header h1 {
+      font-size: 1.42rem;
+      letter-spacing: 0.03em;
+      margin: 0 0 6px;
+      font-weight: 800;
+      color: var(--text);
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    header .sub {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .tagline {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(253, 230, 138, 0.65), rgba(254, 249, 195, 0.9));
+      border: 1px solid rgba(217, 119, 6, 0.2);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px 14px 12px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.95);
+    }
+
+    .section-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin: 0 0 10px;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title .ico {
+      font-size: 1rem;
+    }
+
+    .period-block {
+      margin-bottom: 12px;
+      padding: 10px 10px 8px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(255, 251, 235, 0.95), rgba(254, 249, 195, 0.45));
+      border: 1px dashed rgba(217, 119, 6, 0.22);
+    }
+
+    .period-block:last-of-type { margin-bottom: 0; }
+
+    .period-label {
+      font-weight: 700;
+      font-size: 0.92rem;
+      margin: 0 0 8px;
+      color: var(--text);
+    }
+
+    .row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      align-items: end;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .field input[type="number"] {
+      width: 100%;
+      padding: 10px 11px;
+      border-radius: 12px;
+      border: 1.5px solid rgba(120, 90, 50, 0.15);
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.95);
+      outline: none;
+    }
+
+    .field input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .field select {
+      width: 100%;
+      padding: 10px 10px;
+      border-radius: 12px;
+      border: 1.5px solid rgba(120, 90, 50, 0.15);
+      font-size: 0.92rem;
+      background: rgba(255, 255, 255, 0.95);
+      outline: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2378716c' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 28px;
+    }
+
+    .commute-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .commute-grid label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 11px;
+      border-radius: 14px;
+      border: 1.5px solid rgba(217, 119, 6, 0.2);
+      background: rgba(255, 255, 255, 0.65);
+      cursor: pointer;
+      font-size: 0.88rem;
+      transition: background 0.15s, border-color 0.15s, transform 0.08s;
+    }
+
+    .commute-grid label:active { transform: scale(0.98); }
+
+    .commute-grid input {
+      accent-color: var(--accent);
+      width: 17px;
+      height: 17px;
+    }
+
+    .commute-grid label:has(input:checked) {
+      border-color: var(--accent);
+      background: rgba(253, 230, 138, 0.55);
+      font-weight: 600;
+    }
+
+    .btn-row {
+      margin-top: 4px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px 16px;
+      border: none;
+      border-radius: 16px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      box-shadow: 0 12px 28px rgba(245, 158, 11, 0.38);
+      letter-spacing: 0.04em;
+    }
+
+    .btn:active { transform: translateY(1px); }
+
+    .hint {
+      margin: 8px 0 0;
+      font-size: 0.74rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .result {
+      display: none;
+    }
+
+    .result.show { display: block; }
+
+    .summary {
+      font-size: 0.86rem;
+      line-height: 1.55;
+      color: var(--text);
+      padding: 10px 11px;
+      border-radius: 14px;
+      background: linear-gradient(120deg, rgba(254, 249, 195, 0.7), rgba(255, 255, 255, 0.85));
+      border: 1px solid rgba(217, 119, 6, 0.18);
+      margin-bottom: 12px;
+    }
+
+    .summary strong { color: var(--accent); }
+
+    .advice-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 11px;
+      border-radius: 14px;
+      background: rgba(255, 251, 235, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+    }
+
+    .emoji {
+      font-size: 1.32rem;
+      line-height: 1.2;
+      width: 2.1rem;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .meta { flex: 1; min-width: 0; }
+
+    .meta .name {
+      font-size: 0.74rem;
+      color: var(--muted);
+      margin-bottom: 2px;
+      font-weight: 600;
+    }
+
+    .meta .val {
+      font-size: 0.93rem;
+      line-height: 1.42;
+      font-weight: 500;
+    }
+
+    .yes { color: #15803d; font-weight: 600; }
+    .no { color: var(--muted); font-weight: 600; }
+
+    footer {
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="deco-flowers" aria-hidden="true">
+    <span class="flower f1">🌸</span>
+    <span class="flower f2">🌼</span>
+    <span class="flower f3">✿</span>
+    <span class="flower f4">❀</span>
+    <span class="flower f5">🌷</span>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <div class="bunny-wrap">
+        <span class="bunny" aria-hidden="true">🐰</span>
+        <span class="bunny-shadow" aria-hidden="true"></span>
+      </div>
+      <h1>春日全天穿搭</h1>
+      <p class="sub">三段天气 + 出行方式 → 分层穿搭，一件不落</p>
+      <span class="tagline">最冷打底 · 最热透气 · 中间可脱</span>
+    </header>
+
+    <section class="card" aria-labelledby="p-title">
+      <h2 id="p-title" class="section-title"><span class="ico">🌤</span>三个时段的天气</h2>
+
+      <div class="period-block">
+        <p class="period-label">早晨</p>
+        <div class="row-2">
+          <div class="field">
+            <label for="t-m">气温（℃）</label>
+            <input id="t-m" type="number" inputmode="decimal" placeholder="如 14" />
+          </div>
+          <div class="field">
+            <label for="w-m">天气</label>
+            <select id="w-m">
+              <option value="sunny">晴</option>
+              <option value="cloudy">多云</option>
+              <option value="overcast">阴</option>
+              <option value="light_rain">小雨</option>
+              <option value="heavy_rain">大雨</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="period-block">
+        <p class="period-label">中午</p>
+        <div class="row-2">
+          <div class="field">
+            <label for="t-n">气温（℃）</label>
+            <input id="t-n" type="number" inputmode="decimal" placeholder="如 24" />
+          </div>
+          <div class="field">
+            <label for="w-n">天气</label>
+            <select id="w-n">
+              <option value="sunny">晴</option>
+              <option value="cloudy" selected>多云</option>
+              <option value="overcast">阴</option>
+              <option value="light_rain">小雨</option>
+              <option value="heavy_rain">大雨</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="period-block">
+        <p class="period-label">傍晚</p>
+        <div class="row-2">
+          <div class="field">
+            <label for="t-e">气温（℃）</label>
+            <input id="t-e" type="number" inputmode="decimal" placeholder="如 18" />
+          </div>
+          <div class="field">
+            <label for="w-e">天气</label>
+            <select id="w-e">
+              <option value="sunny">晴</option>
+              <option value="cloudy">多云</option>
+              <option value="overcast">阴</option>
+              <option value="light_rain">小雨</option>
+              <option value="heavy_rain">大雨</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="c-title">
+      <h2 id="c-title" class="section-title"><span class="ico">🚶</span>出行方式</h2>
+      <div class="commute-grid" role="radiogroup" aria-label="出行方式">
+        <label><input type="radio" name="commute" value="metro" checked /><span>地铁通勤</span></label>
+        <label><input type="radio" name="commute" value="car" /><span>开车</span></label>
+        <label><input type="radio" name="commute" value="walk" /><span>步行</span></label>
+        <label><input type="radio" name="commute" value="bike" /><span>骑车</span></label>
+      </div>
+    </section>
+
+    <section class="card btn-row">
+      <button type="button" class="btn" id="go">生成分层穿搭建议</button>
+      <p class="hint">逻辑说明：外套按<strong>最冷时段</strong>扛寒；贴身/内层按<strong>最热时段</strong>避免闷汗；温差大时强调洋葱式叠穿。</p>
+    </section>
+
+    <section class="card result" id="result" aria-live="polite">
+      <h2 class="section-title"><span class="ico">🌿</span>全天建议</h2>
+      <p class="summary" id="summary"></p>
+      <div class="advice-list" id="list"></div>
+    </section>
+
+    <footer>可妮穿搭助手 · 春日单页版</footer>
+  </div>
+
+  <script>
+    function thermalLayer(t) {
+      if (t >= 28) return "hot";
+      if (t >= 22) return "warm";
+      if (t >= 15) return "mild";
+      if (t >= 8) return "cool";
+      return "cold";
+    }
+
+    function readPeriods() {
+      const ids = [
+        { key: "morning", t: "t-m", w: "w-m" },
+        { key: "noon", t: "t-n", w: "w-n" },
+        { key: "evening", t: "t-e", w: "w-e" },
+      ];
+      const out = {};
+      for (const row of ids) {
+        const raw = document.getElementById(row.t).value.trim();
+        const t = raw === "" ? NaN : Number(raw);
+        out[row.key] = { t, w: document.getElementById(row.w).value };
+      }
+      return out;
+    }
+
+    function getCommute() {
+      const el = document.querySelector('input[name="commute"]:checked');
+      return el ? el.value : "metro";
+    }
+
+    function innerByHotLayer(layer, spread) {
+      const base = {
+        hot: "透气棉质短袖或背心作贴身层，保证中午不闷汗。",
+        warm: "薄棉短袖/薄长袖作贴身，吸汗透气即可。",
+        mild: "长袖 T 恤或薄针织贴肤，方便叠穿。",
+        cool: "保暖内衣或薄毛衣贴身，早晚再加外套。",
+        cold: "保暖内衣 + 薄针织双层贴肤，为最冷时刻锁住体温。",
+      };
+      let s = base[layer];
+      if (spread >= 8) {
+        s += " 温差大：可加一件「薄马甲/针织开衫」夹在内外之间，热时先脱外套再脱夹层。";
+      } else if (spread >= 5) {
+        s += " 中等温差：备一件可随时穿脱的薄开衫，比一次性穿厚更灵活。";
+      }
+      return s;
+    }
+
+    function outerByCold(tMin, layerMin, heavyRain, anyRain, commute) {
+      let s = "";
+      if (heavyRain) {
+        s = "防水冲锋衣/雨衣为主外套，防风防雨；到室内可脱，勿长时间捂汗。";
+      } else if (anyRain) {
+        s = "带帽防水外套或轻便雨衣，兼顾防小雨与早晚偏凉。";
+      } else {
+        const o = {
+          hot: "轻薄防晒衣或衬衫外套（早晚略凉时），中午可脱。",
+          warm: "薄夹克/衬衫外套/针织开衫，按最冷时段选薄厚。",
+          mild: "风衣、牛仔夹克或薄呢外套，可脱可穿。",
+          cool: "呢大衣、棉服或厚夹克，以扛住最冷时段为准。",
+          cold: "厚羽绒服、羊毛大衣或厚棉服，最冷时段必须扛住。",
+        };
+        s = o[layerMin];
+      }
+
+      if (commute === "metro") {
+        s += " 地铁：站内外温差大，外套建议易折叠，进站可脱。";
+      } else if (commute === "car") {
+        s += " 开车：外套可下车再穿，车内以舒适透气为主。";
+      } else if (commute === "bike") {
+        s += " 骑车：外套偏防风，注意别过厚导致出汗后着凉。";
+      } else {
+        s += " 步行：外套厚度直接按最冷户外时段来，中午热了可脱在手上。";
+      }
+      return s;
+    }
+
+    function hatSuggest(tMin, tMax, weathers, anyRain, heavyRain) {
+      const sunStrong = weathers.includes("sunny") && tMax >= 24;
+      if (heavyRain || anyRain) {
+        return "带檐防水帽或连衣帽，避免雨水打脸；大雨优先防水材质。";
+      }
+      if (sunStrong && tMin >= 12) {
+        return "空顶帽/棒球帽遮阳，早晨偏凉可换针织帽（按个人习惯）。";
+      }
+      if (thermalLayer(tMin) === "cool" || thermalLayer(tMin) === "cold") {
+        return "针织帽或护耳帽保暖，兼顾早晨/傍晚最冷时段。";
+      }
+      return "轻便帽即可；若中午暴晒明显，可备遮阳帽切换。";
+    }
+
+    function bottomSuggest(layerMin, layerMax, anyRain, commute) {
+      let s = "";
+      if (layerMax === "hot" || layerMax === "warm") {
+        s = "轻薄长裤或九分裤为主；若中午很热可接受短裤但早晚备薄外套护腿。";
+      } else if (layerMax === "mild") {
+        s = "牛仔裤、休闲长裤或轻薄阔腿裤，活动自如。";
+      } else {
+        s = "厚牛仔、加绒裤或呢料裤，按最冷时段保暖。";
+      }
+      if (anyRain) s += " 裤脚注意防溅水，可卷边或选深色。";
+      if (commute === "bike") s += " 骑车避免过紧过厚，方便蹬踏散热。";
+      return s;
+    }
+
+    function shoesSuggest(anyRain, heavyRain, commute, layerMax) {
+      let s = "";
+      if (heavyRain) {
+        s = "防水靴或高帮防雨鞋，注意防滑。";
+      } else if (anyRain) {
+        s = "防水休闲鞋/低帮雨鞋，兼顾步行舒适。";
+      } else if (layerMax === "hot") {
+        s = "透气运动鞋或凉鞋（场合允许），避免闷脚。";
+      } else {
+        s = "舒适运动鞋或休闲皮鞋，全天走路不累。";
+      }
+      const tail = {
+        metro: " 地铁：选方便快走、换乘舒适的鞋。",
+        car: " 开车：鞋底别太厚影响踏板脚感；备一双室内鞋可选。",
+        walk: " 步行：缓震好一点，鞋袜保持干爽。",
+        bike: " 骑车：轻便防滑底，避免阔腿裤绊脚。",
+      };
+      return s + tail[commute];
+    }
+
+    function umbrellaAndBag(anyRain, heavyRain, spread, commute) {
+      const umbrella = anyRain
+        ? { need: true, text: "需要 — 任一时段有雨就建议带伞；大雨选抗风骨架款。" }
+        : { need: false, text: "不必 — 全天无雨可不带；若预报多变可塞一把折叠伞备用。" };
+
+      let bagNeed = false;
+      let bagReason = "";
+      if (commute === "metro" && spread >= 5) {
+        bagNeed = true;
+        bagReason = "地铁温差+叠穿：折叠包装脱下的外套或围巾很省事。";
+      } else if (anyRain) {
+        bagNeed = true;
+        bagReason = "雨天收纳湿伞、备用薄物，折叠包更整洁。";
+      } else if (commute === "bike" && spread >= 6) {
+        bagNeed = true;
+        bagReason = "骑车+温差：折叠包装可脱层，避免单手拎衣。";
+      } else if (spread >= 9) {
+        bagNeed = true;
+        bagReason = "昼夜温差很大，折叠包应对「穿脱切换」更从容。";
+      } else {
+        bagReason = "不必强求；轻便出行时口袋够用即可。";
+      }
+
+      return { umbrella, bag: { need: bagNeed, text: bagReason } };
+    }
+
+    function buildSummary(tMin, tMax, spread, coldName, hotName, commuteLabel) {
+      return (
+        "今日气温约 <strong>" +
+        tMin +
+        "～" +
+        tMax +
+        "℃</strong>（温差 " +
+        spread +
+        "℃）。最冷在 <strong>" +
+        coldName +
+        "</strong>，最热在 <strong>" +
+        hotName +
+        "</strong>。出行：<strong>" +
+        commuteLabel +
+        "</strong>。策略：外套照顾最冷、贴身照顾最热，中间层灵活加减。"
+      );
+    }
+
+    function suggestAll(periods, commute) {
+      const order = [
+        { key: "morning", label: "早晨" },
+        { key: "noon", label: "中午" },
+        { key: "evening", label: "傍晚" },
+      ];
+      const temps = order.map((o) => periods[o.key].t);
+      const tMin = Math.min(...temps);
+      const tMax = Math.max(...temps);
+      const spread = Math.round((tMax - tMin) * 10) / 10;
+
+      let coldKey = "morning";
+      let hotKey = "morning";
+      order.forEach((o) => {
+        if (periods[o.key].t === tMin) coldKey = o.key;
+        if (periods[o.key].t === tMax) hotKey = o.key;
+      });
+      const coldName = order.find((o) => o.key === coldKey).label;
+      const hotName = order.find((o) => o.key === hotKey).label;
+
+      const weathers = order.map((o) => periods[o.key].w);
+      const anyRain = weathers.some((w) => w === "light_rain" || w === "heavy_rain");
+      const heavyRain = weathers.some((w) => w === "heavy_rain");
+
+      const layerMin = thermalLayer(tMin);
+      const layerMax = thermalLayer(tMax);
+
+      const commuteLabels = {
+        metro: "地铁通勤",
+        car: "开车",
+        walk: "步行",
+        bike: "骑车",
+      };
+
+      const inner = innerByHotLayer(layerMax, spread);
+      const outer = outerByCold(tMin, layerMin, heavyRain, anyRain, commute);
+      const hat = hatSuggest(tMin, tMax, weathers, anyRain, heavyRain);
+      const bottom = bottomSuggest(layerMin, layerMax, anyRain, commute);
+      const shoes = shoesSuggest(anyRain, heavyRain, commute, layerMax);
+      const ub = umbrellaAndBag(anyRain, heavyRain, spread, commute);
+
+      const summary = buildSummary(tMin, tMax, spread, coldName, hotName, commuteLabels[commute]);
+
+      const rows = [
+        { icon: "🧢", name: "帽子", val: hat },
+        { icon: "👔", name: "内层（贴身）", val: inner },
+        { icon: "🧥", name: "外层 / 外套（可脱）", val: outer },
+        { icon: "👖", name: "下装", val: bottom },
+        { icon: "👟", name: "鞋子", val: shoes },
+        {
+          icon: "☂️",
+          name: "是否带伞",
+          val: ub.umbrella.text,
+          cls: ub.umbrella.need ? "yes" : "no",
+        },
+        {
+          icon: "🎒",
+          name: "是否带折叠包",
+          val: (ub.bag.need ? "建议带 — " : "可选 — ") + ub.bag.text,
+          cls: ub.bag.need ? "yes" : "no",
+        },
+      ];
+
+      return { summary, rows };
+    }
+
+    document.getElementById("go").addEventListener("click", () => {
+      const periods = readPeriods();
+      const keys = ["morning", "noon", "evening"];
+      for (const k of keys) {
+        if (Number.isNaN(periods[k].t)) {
+          alert("请为早晨、中午、傍晚都填写气温（数字）。");
+          return;
+        }
+      }
+      const commute = getCommute();
+      const { summary, rows } = suggestAll(periods, commute);
+
+      document.getElementById("summary").innerHTML = summary;
+      document.getElementById("list").innerHTML = rows
+        .map(
+          (r) => `
+        <div class="item">
+          <div class="emoji" aria-hidden="true">${r.icon}</div>
+          <div class="meta">
+            <div class="name">${r.name}</div>
+            <div class="val ${r.cls || ""}">${r.val}</div>
+          </div>
+        </div>`
+        )
+        .join("");
+
+      const box = document.getElementById("result");
+      box.classList.add("show");
+      box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  </script>
+</body>
+</html>
